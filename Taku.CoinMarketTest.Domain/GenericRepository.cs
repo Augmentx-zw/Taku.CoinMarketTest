@@ -1,7 +1,6 @@
-﻿using Ark.Gateway.Domain;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-
+using Taku.CoinMarketTest.Data;
 
 namespace Taku.CoinMarketTest.Domain
 {

@@ -1,5 +1,5 @@
-﻿using Ark.Gateway.Domain;
-using System;
+﻿using System;
+using Taku.CoinMarketTest.Data;
 
 namespace Taku.CoinMarketTest.Domain
 {

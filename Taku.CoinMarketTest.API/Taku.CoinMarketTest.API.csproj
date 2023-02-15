@@ -16,7 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\Taku.CoinMarketTest.Data\Taku.CoinMarketTest.Data.csproj" />
+    <ProjectReference Include="..\Taku.CoinMarketTest.Domain\Taku.CoinMarketTest.Domain.csproj" />
   </ItemGroup>
 
 </Project>

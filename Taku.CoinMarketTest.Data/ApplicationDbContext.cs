@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Taku.CoinMarketTest.Data.Models;
 
-namespace Ark.Gateway.Domain
+namespace Taku.CoinMarketTest.Data
 {
     public class ApplicationDbContext : DbContext
     {
@@ -14,6 +14,6 @@ namespace Ark.Gateway.Domain
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<Quote> Quotes { get; set; }
         public DbSet<Status> Statuses { get; set; }
-        
+
     }
 }
