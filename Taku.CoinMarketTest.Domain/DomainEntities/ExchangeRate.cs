@@ -2,11 +2,11 @@
 
 namespace Taku.CoinMarketTest.Domain.DomainEntities
 {
-    public class CoinExchangeHistory
+    public class ExchangeRate
     {
         [Key]
-        public Guid CoinExchangeHistoryId { get; set; }
-        public string? ExchangeHistory { get; set; }
+        public Guid ExchangeRateId { get; set; }
+        public string ExchangeRateResponce { get; set; }
         public DateTime CreatedOn { get; set; }
     }
 }

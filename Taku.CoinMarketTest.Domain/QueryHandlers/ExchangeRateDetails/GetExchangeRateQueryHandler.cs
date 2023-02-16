@@ -2,7 +2,7 @@
 using Taku.CoinMarketTest.Domain.DTO.IntegrationDto;
 using Taku.CoinMarketTest.Domain.Services;
 
-namespace Taku.CoinMarketTest.Domain.QueryHandlers.StatusDetails
+namespace Taku.CoinMarketTest.Domain.QueryHandlers.ExchangeRateDetails
 {
     public class GetExchangeRateQuery : IRequest<CoinClassDto>
     {

@@ -10,6 +10,6 @@ namespace Taku.CoinMarketTest.Data
         {
             //Database.EnsureCreated();
         }
-        public DbSet<CoinExchangeHistory> CoinExchangeHistories { get; set; }
+        public DbSet<ExchangeRate> ExchangeRates { get; set; }
     }
 }

@@ -18,10 +18,10 @@ namespace Taku.CoinMarketTest.Domain.Services
         private readonly string _apiKey;
         private readonly string _apiLimit;
         private readonly IHttpService _httpService;
-        private readonly IRepository<CoinExchangeHistory> _repository;
+        private readonly IRepository<ExchangeRate> _repository;
         private readonly IUnitOfWork _uow;
 
-        public CoinMarketService(IOptions<AppConfigs> options, IHttpService httpService, IRepository<CoinExchangeHistory> repository, IUnitOfWork uow)
+        public CoinMarketService(IOptions<AppConfigs> options, IHttpService httpService, IRepository<ExchangeRate> repository, IUnitOfWork uow)
         {
             _apiKey = options.Value.Key;
             _apiLimit = options.Value.Limit;
@@ -50,21 +50,21 @@ namespace Taku.CoinMarketTest.Domain.Services
             var result = await _httpService.GetAsync(Url.ToString());
             var coinClassDto = JsonConvert.DeserializeObject<CoinClassDto>(result);
 
-                return coinClassDto;
+            return coinClassDto;
         }
 
         public async Task AddCoinMarketDataAsync(CoinClassDto coinClassDto)
         {
             var jsonString = JsonConvert.SerializeObject(coinClassDto);
 
-            var exchangeHistory = new CoinExchangeHistory()
+            var exchangeRate = new ExchangeRate()
             {
-                CoinExchangeHistoryId = Guid.NewGuid(),
-                ExchangeHistory = jsonString,
-                CreatedOn= DateTime.Now
+                ExchangeRateId = Guid.NewGuid(),
+                ExchangeRateResponce = jsonString,
+                CreatedOn = DateTime.Now
             };
 
-            await _repository.InsertAsync(exchangeHistory);
+            await _repository.InsertAsync(exchangeRate);
             await _uow.SaveAsync();
 
         }

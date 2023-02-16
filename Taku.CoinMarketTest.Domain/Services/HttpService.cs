@@ -1,10 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using System.Net;
-using System.Net.Http;
-using System.Text;
-
-namespace Taku.CoinMarketTest.Domain.Services
+﻿namespace Taku.CoinMarketTest.Domain.Services
 {
     public interface IHttpService
     {

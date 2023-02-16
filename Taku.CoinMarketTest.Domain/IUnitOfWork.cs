@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Taku.CoinMarketTest.Domain
+﻿namespace Taku.CoinMarketTest.Domain
 {
     public interface IUnitOfWork : IDisposable
     {

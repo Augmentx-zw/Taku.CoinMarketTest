@@ -13,8 +13,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 
 builder.Services.AddHttpClient();
 
-
-//you only need one mediator in my app life cylcle
 builder.Services.Configure<AppConfigs>(builder.Configuration.GetSection("AppConfig"));
 
 builder.Services.AddMediatR(cfg =>
@@ -26,6 +24,7 @@ builder.Services.AddMediatR(cfg =>
 builder.Services.AddTransient(typeof(IRepository<>), typeof(GenericRepository<>));
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<IHttpService, HttpService>();
+builder.Services.AddTransient<ICoinMarketService, CoinMarketService>();
 
 
 
