@@ -2,7 +2,7 @@
 
 namespace Taku.CoinMarketTest.Domain.CommandHandler.CryptoCoinDetails
 {
-    public class AddCommand : ICommand
+    public class AddCryptoCoinCommand : ICommand
     {
         public Guid CryptoCoinId { get; set; }
         public Guid StatusId { get; set; }
@@ -16,25 +16,23 @@ namespace Taku.CoinMarketTest.Domain.CommandHandler.CryptoCoinDetails
         public int Total_supply { get; set; }
         public int Max_supply { get; set; }
         public string? Tags { get; set; }
-        public string? ProcessedTags { get; set; }
-        public string? CoinTags { get; set; }
         public string? Platform { get; set; }
         public string? Self_reported_circulating_supply { get; set; }
         public string? Self_reported_market_cap { get; set; }
         public DateTime Last_updated { get; set; }
         public DateTime Date_added { get; set; }
     }
-    public class AddCommandHandler : ICommandHandler<AddCommand>
+    public class AddCryptoCoinCommandHandler : ICommandHandler<AddCryptoCoinCommand>
     {
         private readonly IUnitOfWork _uow;
         private readonly IRepository<CryptoCoin> _repo;
 
-        public AddCommandHandler(IUnitOfWork uow, IRepository<CryptoCoin> repo)
+        public AddCryptoCoinCommandHandler(IUnitOfWork uow, IRepository<CryptoCoin> repo)
         {
             _uow = uow;
             _repo = repo;
         }
-        public void Handle(AddCommand command)
+        public void Handle(AddCryptoCoinCommand command)
         {
 
             CryptoCoin InitCryptoCoin = new()
@@ -44,7 +42,6 @@ namespace Taku.CoinMarketTest.Domain.CommandHandler.CryptoCoinDetails
                Date_added= command.Date_added,
                Circulating_supply= command.Circulating_supply,
                Cmc_rank= command.Cmc_rank,
-               CoinTags= command.CoinTags,
                Platform= command.Platform,
                Id= command.Id,
                Last_updated= command.Last_updated,

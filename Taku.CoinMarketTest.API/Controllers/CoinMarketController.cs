@@ -9,32 +9,17 @@ namespace Taku.CoinMarketTest.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StatusController : ControllerBase
+    public class CoinMarketController : ControllerBase
     {
 
         private readonly Mediator _mediator;
-        public StatusController(Mediator mediator)
+        public CoinMarketController(Mediator mediator)
         {
             _mediator = mediator;
         }
 
-        [HttpPost("AddStatus")]
-        public IActionResult Create([FromBody] AddStatusCommand command)
-        {
-            try
-            {
-                command.StatusId = Guid.NewGuid();
-                _mediator.Dispatch(command);
-                return Ok();
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(new { ex.Message });
-            }
-        }
-
         [HttpGet("GetStatus")]
-        public IActionResult GetStatus(Guid statusId)
+        public IActionResult GetMarketData(Guid statusId)
         {
             var result = _mediator.Dispatch(new GetStatusByStatusIdQuery { StatusId = statusId });
             return Ok(result);

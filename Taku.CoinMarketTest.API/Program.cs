@@ -16,7 +16,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 //you only need one mediator in my app life cylcle
 builder.Services.AddSingleton<Mediator>();
 
-builder.Services.AddTransient<IGetCoinData, GetCoinDataImplementation>();
+//builder.Services.AddTransient<IGetCoinData, GetCoinDataImplementation>();
 
 
 //we only use the 

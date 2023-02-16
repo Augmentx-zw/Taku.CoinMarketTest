@@ -2,7 +2,7 @@
 
 namespace Taku.CoinMarketTest.Domain.CommandHandler.StatusDetails
 {
-    public class AddCommand : ICommand
+    public class AddStatusCommand : ICommand
     {
         public Guid StatusId { get; set; }
         public DateTime Timestamp { get; set; }
@@ -13,17 +13,17 @@ namespace Taku.CoinMarketTest.Domain.CommandHandler.StatusDetails
         public string? Notice { get; set; }
     }
 
-    public class AddCommandHandler : ICommandHandler<AddCommand>
+    public class AddStatusCommandHandler : ICommandHandler<AddStatusCommand>
     {
         private readonly IUnitOfWork _uow;
         private readonly IRepository<Status> _repo;
 
-        public AddCommandHandler(IUnitOfWork uow, IRepository<Status> repo)
+        public AddStatusCommandHandler(IUnitOfWork uow, IRepository<Status> repo)
         {
             _uow = uow;
             _repo = repo;
         }
-        public void Handle(AddCommand command)
+        public void Handle(AddStatusCommand command)
         {
 
             Status InitStatus = new Status

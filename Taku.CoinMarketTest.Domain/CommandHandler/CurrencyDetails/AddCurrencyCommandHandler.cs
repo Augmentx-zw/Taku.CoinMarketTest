@@ -2,7 +2,7 @@
 
 namespace Taku.CoinMarketTest.Domain.CommandHandler.CurrencyDetails
 {
-    public class AddCommand : ICommand
+    public class AddCurrencyCommand : ICommand
     {
         public Guid CurrencyId { get; set; }
         public Guid QuoteId { get; set; }
@@ -17,17 +17,17 @@ namespace Taku.CoinMarketTest.Domain.CommandHandler.CurrencyDetails
         public double Fully_diluted_market_cap { get; set; }
         public DateTime Last_updated { get; set; }
     }
-    public class AddCommandHandler : ICommandHandler<AddCommand>
+    public class AddCurrencyCommandHandler : ICommandHandler<AddCurrencyCommand>
     {
         private readonly IUnitOfWork _uow;
         private readonly IRepository<Currency> _repo;
 
-        public AddCommandHandler(IUnitOfWork uow, IRepository<Currency> repo)
+        public AddCurrencyCommandHandler(IUnitOfWork uow, IRepository<Currency> repo)
         {
             _uow = uow;
             _repo = repo;
         }
-        public void Handle(AddCommand command)
+        public void Handle(AddCurrencyCommand command)
         {
 
             Currency InitCurrency = new Currency

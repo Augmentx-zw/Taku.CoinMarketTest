@@ -17,8 +17,6 @@ namespace Taku.CoinMarketTest.Data.Models
         public int Total_supply { get; set; }
         public int Max_supply { get; set; }
         public string? Tags { get; set; }
-        public string? ProcessedTags { get; set; }
-        public string? CoinTags { get; set; }
         public string? Platform { get; set; }
         public string? Self_reported_circulating_supply { get; set; }
         public string? Self_reported_market_cap { get; set; }

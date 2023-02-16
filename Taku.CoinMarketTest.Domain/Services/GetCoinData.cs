@@ -11,9 +11,9 @@ namespace Taku.CoinMarketTest.API.Services
 
         private readonly string? key;
 
-        public GetCoinDataImplementation(IConfiguration configuration)
+        public GetCoinDataImplementation()
         {
-            key = configuration["Key"];
+            key = "6177df16-2b52-4d87-88dd-f5fdcc5f9533";
         }
 
         

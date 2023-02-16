@@ -1,16 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Taku.CoinMarketTest.API.DTO
+namespace Taku.CoinMarketTest.Domain.DTO.IntegrationDto
 {
-   
+
     public class CoinClassDto
     {
         [Key]
         public int Id { get; set; }
         public Status? Status { get; set; }
-        public List<Datum>? Data { get; set; }
+        public List<Coin>? Coin { get; set; }
     }
-    public class Datum
+    public class Coin
     {
         public int Id { get; set; }
         public string? Name { get; set; }
@@ -38,7 +38,7 @@ namespace Taku.CoinMarketTest.API.DTO
         public USD? USD { get; set; }
     }
 
-   
+
 
     public class Status
     {

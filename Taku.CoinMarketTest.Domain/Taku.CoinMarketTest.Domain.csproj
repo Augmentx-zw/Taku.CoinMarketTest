@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Taku.CoinMarketTest.Data\Taku.CoinMarketTest.Data.csproj" />
   </ItemGroup>
 
