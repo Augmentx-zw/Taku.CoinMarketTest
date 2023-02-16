@@ -4,6 +4,7 @@ using Taku.CoinMarketTest.Domain.CommandHandler;
 using Taku.CoinMarketTest.Domain.QueryHandlers;
 using Taku.CoinMarketTest.Domain;
 using Microsoft.EntityFrameworkCore;
+using Taku.CoinMarketTest.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 
 //you only need one mediator in my app life cylcle
 builder.Services.AddSingleton<Mediator>();
+
+builder.Services.AddTransient<IGetCoinData, GetCoinDataImplementation>();
+
 
 //we only use the 
 builder.Services.AddTransient(typeof(IRepository<>), typeof(GenericRepository<>));
