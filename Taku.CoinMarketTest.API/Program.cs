@@ -1,17 +1,8 @@
-using Taku.CoinMarketTest.API;
-using Taku.CoinMarketTest.Data;
-using Taku.CoinMarketTest.Domain.CommandHandler;
-using Taku.CoinMarketTest.Domain.QueryHandlers;
-using Taku.CoinMarketTest.Domain;
 using Microsoft.EntityFrameworkCore;
-using Taku.CoinMarketTest.API.Services;
-using Microsoft.Extensions.Configuration;
+using Taku.CoinMarketTest.Data;
+using Taku.CoinMarketTest.Domain;
 using Taku.CoinMarketTest.Domain.Configurations;
 using Taku.CoinMarketTest.Domain.Services;
-using System.Reflection;
-using Microsoft.Extensions.DependencyInjection;
-using MediatR;
-using System.Net.NetworkInformation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +17,8 @@ builder.Services.AddHttpClient();
 //you only need one mediator in my app life cylcle
 builder.Services.Configure<AppConfigs>(builder.Configuration.GetSection("AppConfig"));
 
-builder.Services.AddMediatR(cfg => {
+builder.Services.AddMediatR(cfg =>
+{
     cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
 });
 

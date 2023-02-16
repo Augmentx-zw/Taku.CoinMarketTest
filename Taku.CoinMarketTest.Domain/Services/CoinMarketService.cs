@@ -1,12 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using System.Net;
 using System.Web;
-using Taku.CoinMarketTest.Domain.CommandHandler.CoinMarketDetails;
-using Taku.CoinMarketTest.Domain.CommandHandler.CryptoCoinDetails;
-using Taku.CoinMarketTest.Domain.CommandHandler.CurrencyDetails;
-using Taku.CoinMarketTest.Domain.CommandHandler.QuoteDetails;
-using Taku.CoinMarketTest.Domain.CommandHandler.StatusDetails;
 using Taku.CoinMarketTest.Domain.Configurations;
 using Taku.CoinMarketTest.Domain.DTO.IntegrationDto;
 
@@ -21,11 +15,13 @@ namespace Taku.CoinMarketTest.Domain.Services
     public class CoinMarketService : ICoinMarketService
     {
         private readonly string _apiKey;
+        private readonly string _apiLimit;
         private readonly IHttpService _httpService;
 
         public CoinMarketService(IOptions<AppConfigs> options, IHttpService httpService)
         {
             _apiKey = options.Value.Key;
+            _apiLimit = options.Value.Limit;
             _httpService = httpService;
         }
 
@@ -35,13 +31,13 @@ namespace Taku.CoinMarketTest.Domain.Services
             var header = new List<KeyValuePair<string, string>>();
             header.Add(KeyValuePair.Create("X-CMC_PRO_API_KEY", _apiKey));
             header.Add(KeyValuePair.Create("Accepts", "application/json"));
-            
+
 
             var Url = new UriBuilder("https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest");
 
             var queryString = HttpUtility.ParseQueryString(string.Empty);
             queryString["start"] = "1";
-            queryString["limit"] = "50";
+            queryString["limit"] = _apiLimit;
             queryString["convert"] = currency;
 
             Url.Query = queryString.ToString();

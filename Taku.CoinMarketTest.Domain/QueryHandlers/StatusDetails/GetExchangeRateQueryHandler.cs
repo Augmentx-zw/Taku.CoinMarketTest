@@ -9,11 +9,11 @@ namespace Taku.CoinMarketTest.Domain.QueryHandlers.StatusDetails
         public string Currency { get; set; }
     }
 
-    public class GetStatusByStatusIdQueryHandler : IRequestHandler<GetExchangeRateQuery, CoinClassDto>
+    public class GetExchangeRateQueryHandler : IRequestHandler<GetExchangeRateQuery, CoinClassDto>
     {
         private readonly ICoinMarketService _coinMarketService;
 
-        public GetStatusByStatusIdQueryHandler(ICoinMarketService coinMarketService)
+        public GetExchangeRateQueryHandler(ICoinMarketService coinMarketService)
         {
             _coinMarketService = coinMarketService;
         }

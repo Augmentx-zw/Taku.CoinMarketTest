@@ -17,7 +17,6 @@ namespace Taku.CoinMarketTest.API.Controllers
 
         }
 
-
         [HttpGet("GetCoinMarket")]
         public IActionResult GetMarketData(string currency)
         {

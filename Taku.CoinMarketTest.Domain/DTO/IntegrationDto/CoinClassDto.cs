@@ -34,7 +34,6 @@ namespace Taku.CoinMarketTest.Domain.DTO.IntegrationDto
     public class Quote
     {
         public int Id { get; set; }
-
         public USD? USD { get; set; }
     }
 
