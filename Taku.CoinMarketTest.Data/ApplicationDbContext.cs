@@ -8,12 +8,8 @@ namespace Taku.CoinMarketTest.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+            //Database.EnsureCreated();
         }
-
-        public DbSet<CryptoCoin> CryptoCoins { get; set; }
-        public DbSet<Currency> Currencies { get; set; }
-        public DbSet<Quote> Quotes { get; set; }
-        public DbSet<Status> Statuses { get; set; }
-
+        public DbSet<CoinExchangeHistory> CoinExchangeHistories { get; set; }
     }
 }
