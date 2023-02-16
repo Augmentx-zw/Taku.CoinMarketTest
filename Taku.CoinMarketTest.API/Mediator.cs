@@ -18,8 +18,10 @@ namespace Taku.CoinMarketTest.API
             {
                 Type type = typeof(ICommandHandler<>);
                 Type[] typeArgs = { command.GetType() };
+                //We are converting to generic using reflection
                 Type handlerType = type.MakeGenericType(typeArgs);
 
+                //makes u be able to use diffrent classes ie my commands
                 dynamic handler = scope.ServiceProvider.GetRequiredService(handlerType);
                 handler.Handle((dynamic)command);
             }

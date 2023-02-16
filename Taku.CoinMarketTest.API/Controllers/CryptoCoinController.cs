@@ -1,19 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using Taku.CoinMarketTest.API;
-using Taku.CoinMarketTest.Data.Models;
-using Taku.CoinMarketTest.Domain.CommandHandler.StatusDetails;
-using Taku.CoinMarketTest.Domain.QueryHandlers.StatusDetails;
+using Taku.CoinMarketTest.Domain.CommandHandler.CryptoCoinDetails;
+using Taku.CoinMarketTest.Domain.QueryHandlers.CryptoCoinDetails;
 
 namespace Taku.CoinMarketTest.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StatusController : ControllerBase
+    public class CryptoCoinController : ControllerBase
     {
 
         private readonly Mediator _mediator;
-        public StatusController(Mediator mediator)
+        public CryptoCoinController(Mediator mediator)
         {
             _mediator = mediator;
         }
@@ -23,6 +20,7 @@ namespace Taku.CoinMarketTest.API.Controllers
         {
             try
             {
+                command.CryptoCoinId = Guid.NewGuid();
                 command.StatusId = Guid.NewGuid();
                 _mediator.Dispatch(command);
                 return Ok();
@@ -36,10 +34,10 @@ namespace Taku.CoinMarketTest.API.Controllers
         [HttpGet("GetStatus")]
         public IActionResult GetStatus(Guid statusId)
         {
-            var result = _mediator.Dispatch(new GetStatusByStatusIdQuery { StatusId = statusId });
+            var result = _mediator.Dispatch(new GetCryptoCoinByStatusIdQuery { StatusId = statusId });
             return Ok(result);
         }
 
-      
+
     }
 }

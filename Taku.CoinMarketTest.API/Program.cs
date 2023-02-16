@@ -12,10 +12,14 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
+//you only need one mediator in my app life cylcle
 builder.Services.AddSingleton<Mediator>();
+
+//we only use the 
 builder.Services.AddTransient(typeof(IRepository<>), typeof(GenericRepository<>));
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
+//abstract way fpr the prpgam to sel asses uts self at run ti - the program becomes self aware at runtime. it will look for icquery it reflection
 builder.Services.AddCommandQueryHandlers(typeof(IQueryHandler<,>), "Taku.CoinMarketTest.Domain");
 builder.Services.AddCommandQueryHandlers(typeof(ICommandHandler<>), "Taku.CoinMarketTest.Domain");
 

@@ -2,28 +2,29 @@
 using System;
 using Taku.CoinMarketTest.API;
 using Taku.CoinMarketTest.Data.Models;
-using Taku.CoinMarketTest.Domain.CommandHandler.StatusDetails;
-using Taku.CoinMarketTest.Domain.QueryHandlers.StatusDetails;
+using Taku.CoinMarketTest.Domain.CommandHandler.CurrencyDetails;
+using Taku.CoinMarketTest.Domain.QueryHandlers.CurrencyDetails;
 
 namespace Taku.CoinMarketTest.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StatusController : ControllerBase
+    public class CurrencyController : ControllerBase
     {
 
         private readonly Mediator _mediator;
-        public StatusController(Mediator mediator)
+        public CurrencyController(Mediator mediator)
         {
             _mediator = mediator;
         }
 
-        [HttpPost("AddStatus")]
+        [HttpPost("AddCurrency")]
         public IActionResult Create([FromBody] AddCommand command)
         {
             try
             {
-                command.StatusId = Guid.NewGuid();
+                command.CurrencyId = Guid.NewGuid();
+                command.QuoteId = Guid.NewGuid(); // change here
                 _mediator.Dispatch(command);
                 return Ok();
             }
@@ -34,9 +35,9 @@ namespace Taku.CoinMarketTest.API.Controllers
         }
 
         [HttpGet("GetStatus")]
-        public IActionResult GetStatus(Guid statusId)
+        public IActionResult GetStatus(Guid quoute)
         {
-            var result = _mediator.Dispatch(new GetStatusByStatusIdQuery { StatusId = statusId });
+            var result = _mediator.Dispatch(new GetCurrenyByQuoteIdQuery { QuoteId = quoute });
             return Ok(result);
         }
 

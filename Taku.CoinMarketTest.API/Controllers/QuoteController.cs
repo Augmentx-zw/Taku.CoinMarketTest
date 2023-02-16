@@ -2,28 +2,29 @@
 using System;
 using Taku.CoinMarketTest.API;
 using Taku.CoinMarketTest.Data.Models;
-using Taku.CoinMarketTest.Domain.CommandHandler.StatusDetails;
-using Taku.CoinMarketTest.Domain.QueryHandlers.StatusDetails;
+using Taku.CoinMarketTest.Domain.CommandHandler.QuoteDetails;
+using Taku.CoinMarketTest.Domain.QueryHandlers.QuoteDetails;
 
 namespace Taku.CoinMarketTest.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StatusController : ControllerBase
+    public class QuoteController : ControllerBase
     {
 
         private readonly Mediator _mediator;
-        public StatusController(Mediator mediator)
+        public QuoteController(Mediator mediator)
         {
             _mediator = mediator;
         }
 
-        [HttpPost("AddStatus")]
+        [HttpPost("AddQuote")]
         public IActionResult Create([FromBody] AddCommand command)
         {
             try
             {
-                command.StatusId = Guid.NewGuid();
+                command.QuoteId = Guid.NewGuid();
+                command.CryptoCoinId = Guid.NewGuid();
                 _mediator.Dispatch(command);
                 return Ok();
             }
@@ -33,10 +34,10 @@ namespace Taku.CoinMarketTest.API.Controllers
             }
         }
 
-        [HttpGet("GetStatus")]
-        public IActionResult GetStatus(Guid statusId)
+        [HttpGet("GetQuote")]
+        public IActionResult GetQuote(Guid coinId)
         {
-            var result = _mediator.Dispatch(new GetStatusByStatusIdQuery { StatusId = statusId });
+            var result = _mediator.Dispatch(new GetQuoteByCryptoCoinIdQuery { CryptoCoinId = coinId });
             return Ok(result);
         }
 
