@@ -22,7 +22,7 @@ namespace Taku.CoinMarketTest.Domain.QueryHandlers.StatusDetails
         public async Task<CoinClassDto> Handle(GetExchangeRateQuery query, CancellationToken cancellationToken)
         {
             var coinClassDto = await _coinMarketService.GetCoinRequestAsync(query.Currency);
-            _coinMarketService.AddCoinMarketData(coinClassDto);
+            //_coinMarketService.AddCoinMarketDataAsync(coinClassDto);
             return coinClassDto;
         }
     }
