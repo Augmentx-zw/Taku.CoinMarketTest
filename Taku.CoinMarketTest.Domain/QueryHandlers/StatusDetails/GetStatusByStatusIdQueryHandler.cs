@@ -1,24 +1,29 @@
-﻿using Taku.CoinMarketTest.Data.Models;
+﻿using MediatR;
+using Taku.CoinMarketTest.Domain.DTO.IntegrationDto;
+using Taku.CoinMarketTest.Domain.Services;
 
 namespace Taku.CoinMarketTest.Domain.QueryHandlers.StatusDetails
 {
-    public class GetStatusByStatusIdQuery : IQuery<IEnumerable<Status>>
+    public class GetExchangeRateQuery : IRequest<CoinClassDto>
     {
-        public Guid StatusId { get; set; }
+        public string Currency { get; set; }
     }
 
-    public class GetStatusByStatusIdQueryHandler : IQueryHandler<GetStatusByStatusIdQuery, IEnumerable<Status>>
+    public class GetStatusByStatusIdQueryHandler : IRequestHandler<GetExchangeRateQuery, CoinClassDto>
     {
-        private readonly IRepository<Status> _repo;
+        private readonly ICoinMarketService _coinMarketService;
 
-        public GetStatusByStatusIdQueryHandler(IRepository<Status> repo)
+        public GetStatusByStatusIdQueryHandler(ICoinMarketService coinMarketService)
         {
-            _repo = repo;
+            _coinMarketService = coinMarketService;
         }
-        public IEnumerable<Status> Handle(GetStatusByStatusIdQuery query)
+
+
+        public async Task<CoinClassDto> Handle(GetExchangeRateQuery query, CancellationToken cancellationToken)
         {
-            var res = _repo.Get(p => p.StatusId == query.StatusId);
-            return res;
+            var coinClassDto = await _coinMarketService.GetCoinRequestAsync(query.Currency);
+            _coinMarketService.AddCoinMarketData(coinClassDto);
+            return coinClassDto;
         }
     }
 }

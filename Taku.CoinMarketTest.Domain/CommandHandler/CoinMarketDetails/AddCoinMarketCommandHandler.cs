@@ -9,11 +9,11 @@ using Taku.CoinMarketTest.Domain.DTO.IntegrationDto;
 
 namespace Taku.CoinMarketTest.Domain.CommandHandler.CoinMarketDetails
 {
-    public class AddCoinMarketCommand : ICommand
+    public class AddCoinMarketCommand : IRequest
     {
         public string? IntegrationKey { get; set; }
     }
-    public class AddCoinMarketCommandHandler : ICommandHandler<AddCoinMarketCommand>
+    public class AddCoinMarketCommandHandler : IRequestHandler<AddCoinMarketCommand>
     {
         private readonly IGetCoinData _getCoin;
 
@@ -24,8 +24,12 @@ namespace Taku.CoinMarketTest.Domain.CommandHandler.CoinMarketDetails
         public void Handle(AddCoinMarketCommand command)
         {
             CoinClassDto coinDto = new ();
+
             string? res = _getCoin.GetCoinRequest(command.IntegrationKey);
+
+
             var obj = JsonConvert.DeserializeObject<CoinClassDto>(res);
+
             var statusCommand = new AddStatusCommand()
             {
                 StatusId = Guid.NewGuid(),

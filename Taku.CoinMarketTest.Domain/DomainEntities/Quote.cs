@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Taku.CoinMarketTest.Data.Models
+namespace Taku.CoinMarketTest.Domain.DomainEntities
 {
     public class Quote
     {

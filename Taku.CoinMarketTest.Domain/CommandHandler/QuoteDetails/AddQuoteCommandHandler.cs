@@ -1,15 +1,15 @@
-﻿using Taku.CoinMarketTest.Data.Models;
+﻿using Taku.CoinMarketTest.Domain.DomainEntities;
 
 namespace Taku.CoinMarketTest.Domain.CommandHandler.QuoteDetails
 {
-    public class AddQuoteCommand : ICommand
+    public class AddQuoteCommand : IRequest
     {
         public Guid QuoteId { get; set; }
         public Guid CryptoCoinId { get; set; }
         public string? Currency { get; set; }
     }
 
-    public class AddQuoteCommandHandler : ICommandHandler<AddQuoteCommand>
+    public class AddQuoteCommandHandler : IRequestHandler<AddQuoteCommand>
     {
         private readonly IUnitOfWork _uow;
         private readonly IRepository<Quote> _repo;

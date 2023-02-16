@@ -1,8 +1,9 @@
-﻿using Taku.CoinMarketTest.Data.Models;
+﻿using MediatR;
+using Taku.CoinMarketTest.Domain.DomainEntities;
 
 namespace Taku.CoinMarketTest.Domain.CommandHandler.StatusDetails
 {
-    public class AddStatusCommand : ICommand
+    public class AddStatusCommand : IRequest
     {
         public Guid StatusId { get; set; }
         public DateTime Timestamp { get; set; }
@@ -13,7 +14,7 @@ namespace Taku.CoinMarketTest.Domain.CommandHandler.StatusDetails
         public string? Notice { get; set; }
     }
 
-    public class AddStatusCommandHandler : ICommandHandler<AddStatusCommand>
+    public class AddStatusCommandHandler : IRequestHandler<AddStatusCommand>
     {
         private readonly IUnitOfWork _uow;
         private readonly IRepository<Status> _repo;
@@ -23,9 +24,9 @@ namespace Taku.CoinMarketTest.Domain.CommandHandler.StatusDetails
             _uow = uow;
             _repo = repo;
         }
-        public void Handle(AddStatusCommand command)
-        {
 
+        public async Task Handle(AddStatusCommand command, CancellationToken cancellationToken)
+        {
             Status InitStatus = new Status
             {
                 StatusId = command.StatusId,
@@ -36,9 +37,8 @@ namespace Taku.CoinMarketTest.Domain.CommandHandler.StatusDetails
                 Error_message = command.Error_message,
                 Timestamp = command.Timestamp
             };
-            _repo.Insert(InitStatus);
-            _uow.Save();
+            await _repo.InsertAsync(InitStatus);
+            await _uow.SaveAsync();
         }
-
     }
 }

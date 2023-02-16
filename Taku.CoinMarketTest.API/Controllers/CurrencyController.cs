@@ -18,24 +18,8 @@ namespace Taku.CoinMarketTest.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost("AddCurrency")]
-        public IActionResult Create([FromBody] AddCommand command)
-        {
-            try
-            {
-                command.CurrencyId = Guid.NewGuid();
-                command.QuoteId = Guid.NewGuid(); // change here
-                _mediator.Dispatch(command);
-                return Ok();
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(new { ex.Message });
-            }
-        }
-
-        [HttpGet("GetStatus")]
-        public IActionResult GetStatus(Guid quoute)
+        [HttpGet("GetCurrenies")]
+        public IActionResult GetCurrenies(Guid quoute)
         {
             var result = _mediator.Dispatch(new GetCurrenyByQuoteIdQuery { QuoteId = quoute });
             return Ok(result);

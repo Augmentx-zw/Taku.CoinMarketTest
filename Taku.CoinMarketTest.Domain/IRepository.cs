@@ -1,26 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
 namespace Taku.CoinMarketTest.Domain
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        TEntity GetByID(object id);
-        IEnumerable<TEntity> Get(
-            Expression<Func<TEntity, bool>>? filter = null,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
-            string includeProperties = "");
+        Task<TEntity> GetByIDAsync(object id);
+        Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> where = null);
 
-        TEntity GetOne(
-    Expression<Func<TEntity, bool>>? filter = null,
-    Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
-    string includeProperties = "");
-        void Insert(TEntity entity);
+        Task<TEntity> GetOneAsync(Expression<Func<TEntity, bool>> where = null);
+        Task InsertAsync(TEntity entity);
 
-        void Delete(TEntity entityToDelete);
-
-        void Update(TEntity entityToUpdate);
+        void Update(TEntity entity);
     }
 }

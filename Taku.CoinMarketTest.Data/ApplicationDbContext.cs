@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Taku.CoinMarketTest.Data.Models;
+using Taku.CoinMarketTest.Domain.DomainEntities;
 
 namespace Taku.CoinMarketTest.Data
 {

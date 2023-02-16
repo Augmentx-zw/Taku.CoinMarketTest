@@ -1,11 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Taku.CoinMarketTest.Data.Models
+﻿namespace Taku.CoinMarketTest.API.Dtos
 {
-    public class Status
+    public class AddStatusDto
     {
-        [Key]
-        public Guid StatusId { get; set; }
         public DateTime Timestamp { get; set; }
         public int Error_code { get; set; }
         public string? Error_message { get; set; }

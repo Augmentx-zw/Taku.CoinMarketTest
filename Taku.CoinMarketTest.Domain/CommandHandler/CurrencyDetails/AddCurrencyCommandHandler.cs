@@ -1,8 +1,8 @@
-﻿using Taku.CoinMarketTest.Data.Models;
+﻿using Taku.CoinMarketTest.Domain.DomainEntities;
 
 namespace Taku.CoinMarketTest.Domain.CommandHandler.CurrencyDetails
 {
-    public class AddCurrencyCommand : ICommand
+    public class AddCurrencyCommand : IRequest
     {
         public Guid CurrencyId { get; set; }
         public Guid QuoteId { get; set; }
@@ -17,7 +17,7 @@ namespace Taku.CoinMarketTest.Domain.CommandHandler.CurrencyDetails
         public double Fully_diluted_market_cap { get; set; }
         public DateTime Last_updated { get; set; }
     }
-    public class AddCurrencyCommandHandler : ICommandHandler<AddCurrencyCommand>
+    public class AddCurrencyCommandHandler : IRequestHandler<AddCurrencyCommand>
     {
         private readonly IUnitOfWork _uow;
         private readonly IRepository<Currency> _repo;

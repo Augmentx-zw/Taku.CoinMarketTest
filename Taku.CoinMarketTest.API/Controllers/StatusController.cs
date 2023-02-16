@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using Taku.CoinMarketTest.API;
 using Taku.CoinMarketTest.Data.Models;
@@ -12,31 +13,17 @@ namespace Taku.CoinMarketTest.API.Controllers
     public class StatusController : ControllerBase
     {
 
-        private readonly Mediator _mediator;
-        public StatusController(Mediator mediator)
+        private readonly IMediator _mediator;
+        public StatusController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
-        [HttpPost("AddStatus")]
-        public IActionResult Create([FromBody] AddStatusCommand command)
-        {
-            try
-            {
-                command.StatusId = Guid.NewGuid();
-                _mediator.Dispatch(command);
-                return Ok();
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(new { ex.Message });
-            }
-        }
 
         [HttpGet("GetStatus")]
         public IActionResult GetStatus(Guid statusId)
         {
-            var result = _mediator.Dispatch(new GetStatusByStatusIdQuery { StatusId = statusId });
+            var result = _mediator.Send(new GetExchangeRateQuery { StatusId = statusId });
             return Ok(result);
         }
 

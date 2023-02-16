@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taku.CoinMarketTest.API", "Taku.CoinMarketTest.API\Taku.CoinMarketTest.API.csproj", "{23AA39BB-C946-4DCE-B632-01F123F1C245}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taku.CoinMarketTest.API", "Taku.CoinMarketTest.API\Taku.CoinMarketTest.API.csproj", "{23AA39BB-C946-4DCE-B632-01F123F1C245}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taku.CoinMarketTest.Data", "Taku.CoinMarketTest.Data\Taku.CoinMarketTest.Data.csproj", "{CD90F641-D267-4540-80FD-116B530E85F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taku.CoinMarketTest.Data", "Taku.CoinMarketTest.Data\Taku.CoinMarketTest.Data.csproj", "{CD90F641-D267-4540-80FD-116B530E85F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taku.CoinMarketTest.Domain", "Taku.CoinMarketTest.Domain\Taku.CoinMarketTest.Domain.csproj", "{A17D30A4-F143-4472-BE36-DB6C906078CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taku.CoinMarketTest.Domain", "Taku.CoinMarketTest.Domain\Taku.CoinMarketTest.Domain.csproj", "{A17D30A4-F143-4472-BE36-DB6C906078CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

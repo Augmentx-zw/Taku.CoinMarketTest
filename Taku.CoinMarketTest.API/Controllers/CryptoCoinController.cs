@@ -15,24 +15,8 @@ namespace Taku.CoinMarketTest.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost("AddStatus")]
-        public IActionResult Create([FromBody] AddCommand command)
-        {
-            try
-            {
-                command.CryptoCoinId = Guid.NewGuid();
-                command.StatusId = Guid.NewGuid();
-                _mediator.Dispatch(command);
-                return Ok();
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(new { ex.Message });
-            }
-        }
-
-        [HttpGet("GetStatus")]
-        public IActionResult GetStatus(Guid statusId)
+        [HttpGet("CryptoCoins")]
+        public IActionResult CryptoCoins(Guid statusId)
         {
             var result = _mediator.Dispatch(new GetCryptoCoinByStatusIdQuery { StatusId = statusId });
             return Ok(result);

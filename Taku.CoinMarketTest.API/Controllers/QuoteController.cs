@@ -18,22 +18,6 @@ namespace Taku.CoinMarketTest.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost("AddQuote")]
-        public IActionResult Create([FromBody] AddCommand command)
-        {
-            try
-            {
-                command.QuoteId = Guid.NewGuid();
-                command.CryptoCoinId = Guid.NewGuid();
-                _mediator.Dispatch(command);
-                return Ok();
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(new { ex.Message });
-            }
-        }
-
         [HttpGet("GetQuote")]
         public IActionResult GetQuote(Guid coinId)
         {

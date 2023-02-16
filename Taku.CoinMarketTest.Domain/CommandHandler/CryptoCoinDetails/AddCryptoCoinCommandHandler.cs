@@ -1,8 +1,8 @@
-﻿using Taku.CoinMarketTest.Data.Models;
+﻿using Taku.CoinMarketTest.Domain.DomainEntities;
 
 namespace Taku.CoinMarketTest.Domain.CommandHandler.CryptoCoinDetails
 {
-    public class AddCryptoCoinCommand : ICommand
+    public class AddCryptoCoinCommand : IRequest
     {
         public Guid CryptoCoinId { get; set; }
         public Guid StatusId { get; set; }
@@ -22,7 +22,7 @@ namespace Taku.CoinMarketTest.Domain.CommandHandler.CryptoCoinDetails
         public DateTime Last_updated { get; set; }
         public DateTime Date_added { get; set; }
     }
-    public class AddCryptoCoinCommandHandler : ICommandHandler<AddCryptoCoinCommand>
+    public class AddCryptoCoinCommandHandler : IRequestHandler<AddCryptoCoinCommand>
     {
         private readonly IUnitOfWork _uow;
         private readonly IRepository<CryptoCoin> _repo;

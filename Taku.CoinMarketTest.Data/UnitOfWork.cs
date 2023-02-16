@@ -1,18 +1,19 @@
-﻿using System;
-using Taku.CoinMarketTest.Data;
+﻿using Taku.CoinMarketTest.Domain;
 
-namespace Taku.CoinMarketTest.Domain
+namespace Taku.CoinMarketTest.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _context;
+
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
         }
-        public void Save()
+
+        public async Task SaveAsync()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
         private bool disposed = false;
         protected virtual void Dispose(bool disposing)
