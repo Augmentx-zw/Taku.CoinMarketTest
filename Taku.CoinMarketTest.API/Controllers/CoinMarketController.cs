@@ -8,7 +8,7 @@ namespace Taku.CoinMarketTest.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class CoinMarketController : ControllerBase
     {
 

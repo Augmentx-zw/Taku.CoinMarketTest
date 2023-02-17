@@ -1,15 +1,8 @@
 ﻿@model Taku.CoinMarketTest.Client.ViewModels.CoinClassViewModel
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "IndexAsync";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-
-
 
 <h1>IndexAsync</h1>
 
@@ -17,10 +10,10 @@
     <h4>CoinClassViewModel</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Id)
         </dt>
-        <dd class="col-sm-10">
+        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Id)
         </dd>
     </dl>

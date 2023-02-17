@@ -1,56 +1,36 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Taku.CoinMarketTest.Client.Models;
+using Taku.CoinMarketTest.Client.Services;
+using Taku.CoinMarketTest.Client.ViewModels;
 
 namespace Taku.CoinMarketTest.Client.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IHttpClientService _client;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IHttpClientService client)
         {
             _logger = logger;
+            _client = client;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
-            return View();
+            var header = new List<KeyValuePair<string, string>>();
+            header.Add(KeyValuePair.Create("X-CMC_PRO_API_KEY", "tmpJwt"));
+
+            var currency = "USD";
+            var result = await _client.GetRequest(new CoinClassViewModel(), $"CoinMarket/GetCurrentCoinMarket?currency={currency}");
+
+            return View(result);
         }
 
         public IActionResult Privacy()
         {
             return View();
-        }
-
-        public async Task<IActionResult> Weather()
-        {
-
-            using (var client = new HttpClient())
-            {
-                //var tokenResponse = await _tokenService.GetToken("weatherapi.read");
-
-                //client
-                //  .SetBearerToken(tokenResponse.AccessToken);
-
-                var result = client
-                  .GetAsync("https://localhost:5445/weatherforecast")
-                  .Result;
-
-                if (result.IsSuccessStatusCode)
-                {
-                    var model = result.Content.ReadAsStringAsync().Result;
-
-                    //data = JsonConvert.DeserializeObject<List<WeatherData>>(model);
-
-                    return View(data);
-                }
-                else
-                {
-                    throw new Exception("Unable to get content");
-                }
-
-            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
