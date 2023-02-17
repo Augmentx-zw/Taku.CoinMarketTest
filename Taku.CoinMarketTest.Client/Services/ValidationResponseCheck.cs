@@ -1,5 +1,5 @@
-﻿using ArkPortal.Ecommerce.DTO;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using Taku.CoinMarketTest.Client.ViewModels;
 
 namespace Taku.CoinMarketTest.Client.Services
 {

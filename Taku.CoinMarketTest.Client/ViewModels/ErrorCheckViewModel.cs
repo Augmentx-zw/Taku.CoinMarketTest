@@ -1,4 +1,4 @@
-﻿namespace ArkPortal.Ecommerce.DTO
+﻿namespace Taku.CoinMarketTest.Client.ViewModels
 {
     public class ErrorCheckViewModel
     {

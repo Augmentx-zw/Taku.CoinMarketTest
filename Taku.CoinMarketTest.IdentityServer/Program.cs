@@ -1,5 +1,5 @@
-﻿using Taku.CoinMarketTest.IdentityServer;
-using Serilog;
+﻿using Serilog;
+using Taku.CoinMarketTest.IdentityServer;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -19,7 +19,7 @@ try
     var app = builder
         .ConfigureServices()
         .ConfigurePipeline();
-    
+
     app.Run();
 }
 catch (Exception ex)

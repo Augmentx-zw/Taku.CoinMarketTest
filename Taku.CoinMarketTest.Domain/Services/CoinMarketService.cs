@@ -33,7 +33,7 @@ namespace Taku.CoinMarketTest.Domain.Services
         public async Task<CoinClassDto> GetCoinRequestAsync(string currency)
         {
 
-            var header = new List<KeyValuePair<string, string>> ();
+            var header = new List<KeyValuePair<string, string>>();
             header.Add(KeyValuePair.Create("X-CMC_PRO_API_KEY", _apiKey));
             header.Add(KeyValuePair.Create("Accepts", "application/json"));
 
@@ -53,7 +53,7 @@ namespace Taku.CoinMarketTest.Domain.Services
             // to optimize here
             result = result.Replace(currency, "Currency");
             var toreplace = "\"price\":";
-            var toreplacewith = "\"name\": \""+currency+"\",  \"price\": ";
+            var toreplacewith = "\"name\": \"" + currency + "\",  \"price\": ";
 
             result = result.Replace(toreplace, toreplacewith);
 

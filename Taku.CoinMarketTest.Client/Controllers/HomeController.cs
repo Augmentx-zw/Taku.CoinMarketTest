@@ -10,15 +10,25 @@ namespace Taku.CoinMarketTest.Client.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IHttpClientService _client;
+        private readonly ITokenService _tokenService;
 
-        public HomeController(ILogger<HomeController> logger, IHttpClientService client)
+        public HomeController(ILogger<HomeController> logger, IHttpClientService client, ITokenService tokenService)
         {
             _logger = logger;
             _client = client;
+            _tokenService = tokenService;
         }
 
         public async Task<IActionResult> IndexAsync()
         {
+
+            var tokenResponse = await _tokenService.GetToken("weatherapi.read");
+
+
+            client
+        .SetBearerToken(tokenResponse.AccessToken);
+
+
             var header = new List<KeyValuePair<string, string>>();
             header.Add(KeyValuePair.Create("X-CMC_PRO_API_KEY", "tmpJwt"));
 

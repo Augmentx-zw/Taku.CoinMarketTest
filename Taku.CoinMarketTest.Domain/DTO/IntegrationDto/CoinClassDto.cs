@@ -48,7 +48,7 @@ namespace Taku.CoinMarketTest.Domain.DTO.IntegrationDto
 
     public class Currency
     {
-        public string Name { get; set; }   
+        public string Name { get; set; }
         public double Price { get; set; }
         public int Volume_24h { get; set; }
         public double Volume_change_24h { get; set; }

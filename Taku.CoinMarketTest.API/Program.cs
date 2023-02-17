@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Taku.CoinMarketTest.Data;
 using Taku.CoinMarketTest.Domain;
