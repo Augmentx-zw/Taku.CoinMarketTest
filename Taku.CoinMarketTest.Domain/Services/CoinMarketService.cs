@@ -33,9 +33,10 @@ namespace Taku.CoinMarketTest.Domain.Services
         public async Task<CoinClassDto> GetCoinRequestAsync(string currency)
         {
 
-            var header = new List<KeyValuePair<string, string>>();
+            var header = new List<KeyValuePair<string, string>> ();
             header.Add(KeyValuePair.Create("X-CMC_PRO_API_KEY", _apiKey));
             header.Add(KeyValuePair.Create("Accepts", "application/json"));
+
 
 
             var Url = new UriBuilder("https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest");
@@ -47,9 +48,16 @@ namespace Taku.CoinMarketTest.Domain.Services
 
             Url.Query = queryString.ToString();
 
-            var result = await _httpService.GetAsync(Url.ToString());
-            var coinClassDto = JsonConvert.DeserializeObject<CoinClassDto>(result);
+            var result = await _httpService.GetAsync(Url.ToString(), header);
 
+            // to optimize here
+            result = result.Replace(currency, "Currency");
+            var toreplace = "\"price\":";
+            var toreplacewith = "\"name\": \""+currency+"\",  \"price\": ";
+
+            result = result.Replace(toreplace, toreplacewith);
+
+            var coinClassDto = JsonConvert.DeserializeObject<CoinClassDto>(result);
             return coinClassDto;
         }
 

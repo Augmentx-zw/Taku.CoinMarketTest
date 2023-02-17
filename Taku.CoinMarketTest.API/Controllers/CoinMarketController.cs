@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Taku.CoinMarketTest.Domain.DTO.IntegrationDto;
 using Taku.CoinMarketTest.Domain.QueryHandlers.ExchangeRateDetails;
 
 namespace Taku.CoinMarketTest.API.Controllers
@@ -18,9 +19,9 @@ namespace Taku.CoinMarketTest.API.Controllers
         }
 
         [HttpGet("GetCurrentCoinMarket")]
-        public IActionResult GetCurrentCoinMarket(string currency)
+        public async Task<IActionResult> GetCurrentCoinMarketAsync(string currency)
         {
-            var result = _mediator.Send(new GetExchangeRateQuery { Currency = currency });
+            CoinClassDto result = await _mediator.Send(new GetExchangeRateQuery { Currency = currency });
             return Ok(result);
         }
 
