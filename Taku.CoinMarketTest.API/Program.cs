@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Taku.CoinMarketTest.Data;
 using Taku.CoinMarketTest.Domain;
 using Taku.CoinMarketTest.Domain.Configurations;
@@ -31,6 +32,17 @@ builder.Services.AddTransient(typeof(IRepository<>), typeof(GenericRepository<>)
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<IHttpService, HttpService>();
 
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer("Bearer", options =>
+    {
+        options.Authority = "https://localhost:5001";
+
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateAudience = false
+        };
+    });
+
 
 
 builder.Services.AddControllers();
@@ -45,6 +57,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

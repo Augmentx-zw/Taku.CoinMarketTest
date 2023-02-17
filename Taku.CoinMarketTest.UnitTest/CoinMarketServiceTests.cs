@@ -1,13 +1,11 @@
 ﻿using Microsoft.Extensions.Options;
 using Moq;
 using Newtonsoft.Json;
-using System.Threading.Tasks;
 using Taku.CoinMarketTest.Domain;
 using Taku.CoinMarketTest.Domain.Configurations;
 using Taku.CoinMarketTest.Domain.DomainEntities;
 using Taku.CoinMarketTest.Domain.DTO.IntegrationDto;
 using Taku.CoinMarketTest.Domain.Services;
-using Xunit;
 
 namespace Taku.CoinMarketTest.UnitTest
 {
