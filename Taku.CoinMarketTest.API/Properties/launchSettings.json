@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "Taku.CoinMarketTest.API": {
+    "CoinMarketTestApi": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

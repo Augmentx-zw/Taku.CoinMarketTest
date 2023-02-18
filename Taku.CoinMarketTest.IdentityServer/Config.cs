@@ -13,15 +13,15 @@ public static class Config
     public static IEnumerable<ApiScope> ApiScopes =>
         new ApiScope[]
         {
-            new ApiScope("CoinMarketTestApi.read"),
-            new ApiScope("CoinMarketTestApi.write"),
+            new ApiScope("weatherapi.read"),
+            new ApiScope("weatherapi.write"),
         };
 
     public static IEnumerable<ApiResource> ApiResources => new[]
     {
-        new ApiResource("CoinMarketTestApi")
+        new ApiResource("weatherapi")
         {
-            Scopes = new List<string> {"CoinMarketTestApi.read", "CoinMarketTestApi.write"},
+            Scopes = new List<string> {"weatherapi.read", "weatherapi.write"},
             ApiSecrets = new List<Secret> {new Secret("ScopeSecret".Sha256())},
             UserClaims = new List<string> {"role"}
         }
@@ -39,7 +39,7 @@ public static class Config
     AllowedGrantTypes = GrantTypes.ClientCredentials,
 
     ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) },
-    AllowedScopes = {"CoinMarketTestApi.read", "CoinMarketTestApi.write"}
+    AllowedScopes = {"weatherapi.read", "weatherapi.write"}
             },
 
             // interactive client using code flow + pkce
@@ -55,7 +55,7 @@ public static class Config
     PostLogoutRedirectUris = { "https://localhost:5444/signout-callback-oidc" },
 
     AllowOfflineAccess = true,
-    AllowedScopes = { "openid", "profile", "CoinMarketTestApi.read" },
+    AllowedScopes = { "openid", "profile", "weatherapi.read" },
     RequireConsent = true
             },
         };

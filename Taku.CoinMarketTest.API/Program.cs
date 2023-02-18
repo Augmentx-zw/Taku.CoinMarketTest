@@ -33,7 +33,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
         options.Authority = "https://localhost:5443";
-        options.Audience = "CoinMarketTestApi";
+        options.Audience = "weatherapi";
         options.TokenValidationParameters.ValidTypes = new[] { "at+jwt" };
     });
 
