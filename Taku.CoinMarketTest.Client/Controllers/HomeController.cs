@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using IdentityModel.Client;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Diagnostics;
 using Taku.CoinMarketTest.Client.Models;
 using Taku.CoinMarketTest.Client.Services;
@@ -19,22 +22,55 @@ namespace Taku.CoinMarketTest.Client.Controllers
             _tokenService = tokenService;
         }
 
-        public async Task<IActionResult> IndexAsync()
+        public async Task<IActionResult> Index()
         {
 
-            var tokenResponse = await _tokenService.GetToken("CoinMarketTestApi.read");
+            //var tokenResponse = await _tokenService.GetToken("CoinMarketTestApi.read");
 
 
-            //_client.SetBearerToken(tokenResponse.AccessToken);
+            ////_client.SetBearerToken(tokenResponse.AccessToken);
 
 
-            var header = new List<KeyValuePair<string, string>>();
-            header.Add(KeyValuePair.Create("X-CMC_PRO_API_KEY", "tmpJwt"));
+            //var header = new List<KeyValuePair<string, string>>();
+            //header.Add(KeyValuePair.Create("X-CMC_PRO_API_KEY", "tmpJwt"));
 
+            //var currency = "USD";
+            //var result = await _client.GetRequest(new CoinClassViewModel(), $"CoinMarket/GetCurrentCoinMarket?currency={currency}");
+
+            //return View(result);
+
+            using var client = new HttpClient();
+
+            var token = await HttpContext.GetTokenAsync("access_token");
+            client.SetBearerToken(token);
             var currency = "USD";
-            var result = await _client.GetRequest(new CoinClassViewModel(), $"CoinMarket/GetCurrentCoinMarket?currency={currency}");
+            var result = await client.GetAsync($"https://localhost:5445/api/CoinMarket/GetCurrentCoinMarket?currency={currency}");
 
-            return View(result);
+            if (result.IsSuccessStatusCode)
+            {
+                var model = await result.Content.ReadAsStringAsync();
+                var coinData = JsonConvert.DeserializeObject<CoinClassViewModel>(model);
+                var coinRates = new List<CoinViewModel>();
+
+                foreach (var coinItem in coinData.Data)
+                {
+                    var coinRate = new CoinViewModel
+                    {
+                        Name = coinItem.Name.ToLower(),
+                        Slug = coinItem.Slug.ToLower(),
+                        Symbol = coinItem.Symbol.ToLower(),
+                        Currency = coinItem.Quote.Currency.Name,
+                        Price = (decimal)coinItem.Quote.Currency.Price            
+                    };
+                   
+                    coinRates.Add(coinRate);
+                }
+
+                return View(coinRates);
+            }
+
+            throw new Exception("Unable to get content");
+
         }
 
         public IActionResult Privacy()

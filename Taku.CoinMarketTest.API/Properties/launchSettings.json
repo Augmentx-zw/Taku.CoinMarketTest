@@ -4,17 +4,17 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:6001",
-      "sslPort": 0
+      "applicationUrl": "http://localhost:38464",
+      "sslPort": 44348
     }
   },
   "profiles": {
-    "Taku.CoinMarketTest.API": {
+    "weatherapi": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5293",
+      "applicationUrl": "https://localhost:5445;http://localhost:5002",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
