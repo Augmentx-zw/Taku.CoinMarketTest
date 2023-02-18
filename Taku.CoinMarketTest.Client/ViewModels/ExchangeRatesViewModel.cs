@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Taku.CoinMarketTest.Domain.DomainEntities
+namespace Taku.CoinMarketTest.Client.ViewModels
 {
-    public class ExchangeRate
+    public class ExchangeRateViewModel
     {
         [Key]
         public Guid ExchangeRateId { get; set; }

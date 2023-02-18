@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Taku.CoinMarketTest.Client.ViewModels.ExchangeRateViewModel>
+
+@{
+    ViewData["Title"] = "Coin Market History";
+}
+
+<h1>Coin Market History</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedOn)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+               Snapshot - @Html.DisplayFor(modelItem => item.CreatedOn)
+            </td>
+            <td>
+                 <a asp-action="CoinMarketHistoryDetail" asp-route-id="@item.ExchangeRateId"> Details </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

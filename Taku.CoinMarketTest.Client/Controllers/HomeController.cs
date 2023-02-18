@@ -71,6 +71,63 @@ namespace Taku.CoinMarketTest.Client.Controllers
 
         }
 
+        public async Task<IActionResult> CoinMarketHistory()
+        {
+            using var client = new HttpClient();
+
+            var token = await HttpContext.GetTokenAsync("access_token");
+            client.SetBearerToken(token);
+            var result = await client.GetAsync($"https://localhost:5445/api/CoinMarket/GetCoinMarketHistory");
+
+            if (result.IsSuccessStatusCode)
+            {
+                var model = await result.Content.ReadAsStringAsync();
+                var CoinMarketHistory = JsonConvert.DeserializeObject<List<ExchangeRateViewModel>>(model);
+
+
+                return View(CoinMarketHistory);
+            }
+
+            throw new Exception("Unable to get content");
+
+        }
+
+        public async Task<IActionResult> CoinMarketHistoryDetail(Guid id)
+        {
+            using var client = new HttpClient();
+
+            var token = await HttpContext.GetTokenAsync("access_token");
+            client.SetBearerToken(token);
+            var result = await client.GetAsync($"https://localhost:5445/api/CoinMarket/GetCoinMarketById?coinId={id}");
+
+            if (result.IsSuccessStatusCode)
+            {
+                var model = await result.Content.ReadAsStringAsync();
+                var exchangeRateData = JsonConvert.DeserializeObject<ExchangeRateViewModel>(model);
+                var coinData = JsonConvert.DeserializeObject<CoinClassViewModel>(exchangeRateData.ExchangeRateResponce);
+                var coinRates = new List<CoinViewModel>();
+
+                foreach (var coinItem in coinData.Data)
+                {
+                    var coinRate = new CoinViewModel
+                    {
+                        Name = coinItem.Name.ToLower(),
+                        Slug = coinItem.Slug.ToLower(),
+                        Symbol = coinItem.Symbol.ToLower(),
+                        Currency = coinItem.Quote.Currency.Name,
+                        Price = (decimal)coinItem.Quote.Currency.Price
+                    };
+
+                    coinRates.Add(coinRate);
+                }
+
+                return View(coinRates);
+            }
+
+            throw new Exception("Unable to get content");
+
+        }
+
         public IActionResult Privacy()
         {
             return View();
