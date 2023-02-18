@@ -1,5 +1,6 @@
 ﻿using IdentityModel.Client;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Diagnostics;
@@ -9,6 +10,7 @@ using Taku.CoinMarketTest.Client.ViewModels;
 
 namespace Taku.CoinMarketTest.Client.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -24,19 +26,6 @@ namespace Taku.CoinMarketTest.Client.Controllers
 
         public async Task<IActionResult> Index()
         {
-
-            //var tokenResponse = await _tokenService.GetToken("CoinMarketTestApi.read");
-
-            ////_client.SetBearerToken(tokenResponse.AccessToken);
-
-            //var header = new List<KeyValuePair<string, string>>();
-            //header.Add(KeyValuePair.Create("X-CMC_PRO_API_KEY", "tmpJwt"));
-
-            //var currency = "USD";
-            //var result = await _client.GetRequest(new CoinClassViewModel(), $"CoinMarket/GetCurrentCoinMarket?currency={currency}");
-
-            //return View(result);
-
             using var client = new HttpClient();
 
             var token = await HttpContext.GetTokenAsync("access_token");
