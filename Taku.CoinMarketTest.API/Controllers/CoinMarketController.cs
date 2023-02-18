@@ -26,6 +26,19 @@ namespace Taku.CoinMarketTest.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("GetCoinMarketHistory")]
+        public async Task<IActionResult> GetCoinMarketHistoryAsync()
+        {
+            var result = await _mediator.Send(new GetExchangeRatesQuery { });
+            return Ok(result);
+        }
+
+        [HttpGet("GetCoinMarketById")]
+        public async Task<IActionResult> GetCoinMarketByIdAsync(Guid coinId)
+        {
+            var result = await _mediator.Send(new GetExchangeRateByIdQuery {  ExchangeRateId = coinId });
+            return Ok(result);
+        }
 
     }
 }
