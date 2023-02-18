@@ -22,11 +22,10 @@ namespace Taku.CoinMarketTest.Client.Controllers
         public async Task<IActionResult> IndexAsync()
         {
 
-            var tokenResponse = await _tokenService.GetToken("weatherapi.read");
+            var tokenResponse = await _tokenService.GetToken("CoinMarketTestApi.read");
 
 
-            client
-        .SetBearerToken(tokenResponse.AccessToken);
+            //_client.SetBearerToken(tokenResponse.AccessToken);
 
 
             var header = new List<KeyValuePair<string, string>>();

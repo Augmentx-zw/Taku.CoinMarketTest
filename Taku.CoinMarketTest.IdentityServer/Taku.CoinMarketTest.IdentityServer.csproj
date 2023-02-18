@@ -4,10 +4,50 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Properties\launchSettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\Account\AccessDenied.cshtml" />
+    <None Include="Pages\Account\Login\Index.cshtml" />
+    <None Include="Pages\Account\Logout\Index.cshtml" />
+    <None Include="Pages\Account\Logout\LoggedOut.cshtml" />
+    <None Include="Pages\Ciba\All.cshtml" />
+    <None Include="Pages\Ciba\Consent.cshtml" />
+    <None Include="Pages\Ciba\Index.cshtml" />
+    <None Include="Pages\Ciba\_ScopeListItem.cshtml" />
+    <None Include="Pages\Consent\Index.cshtml" />
+    <None Include="Pages\Consent\_ScopeListItem.cshtml" />
+    <None Include="Pages\Device\Index.cshtml" />
+    <None Include="Pages\Device\Success.cshtml" />
+    <None Include="Pages\Device\_ScopeListItem.cshtml" />
+    <None Include="Pages\Diagnostics\Index.cshtml" />
+    <None Include="Pages\ExternalLogin\Callback.cshtml" />
+    <None Include="Pages\ExternalLogin\Challenge.cshtml" />
+    <None Include="Pages\Grants\Index.cshtml" />
+    <None Include="Pages\Home\Error\Index.cshtml" />
+    <None Include="Pages\Index.cshtml" />
+    <None Include="Pages\Redirect\Index.cshtml" />
+    <None Include="Pages\Shared\_Layout.cshtml" />
+    <None Include="Pages\Shared\_Nav.cshtml" />
+    <None Include="Pages\Shared\_ValidationSummary.cshtml" />
+    <None Include="Pages\_ViewImports.cshtml" />
+    <None Include="Pages\_ViewStart.cshtml" />
+  </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Duende.IdentityServer" Version="6.2.0" />
-
-    <PackageReference Include="Serilog.AspNetCore" Version="6.0.0" />
+	  <PackageReference Include="Duende.IdentityServer" Version="6.0.4" />
+	  <PackageReference Include="Duende.IdentityServer.AspNetIdentity" Version="6.0.4" />
+	  <PackageReference Include="Duende.IdentityServer.EntityFramework" Version="6.0.4" />
+	  <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.3" />
+	  <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.3" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.3" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.3">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	  <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
   </ItemGroup>
 </Project>
