@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "weatherapi": {
+    "Taku.CoinMarketTest.API": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

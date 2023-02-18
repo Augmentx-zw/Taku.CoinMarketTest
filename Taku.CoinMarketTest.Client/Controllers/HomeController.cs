@@ -27,9 +27,7 @@ namespace Taku.CoinMarketTest.Client.Controllers
 
             //var tokenResponse = await _tokenService.GetToken("CoinMarketTestApi.read");
 
-
             ////_client.SetBearerToken(tokenResponse.AccessToken);
-
 
             //var header = new List<KeyValuePair<string, string>>();
             //header.Add(KeyValuePair.Create("X-CMC_PRO_API_KEY", "tmpJwt"));

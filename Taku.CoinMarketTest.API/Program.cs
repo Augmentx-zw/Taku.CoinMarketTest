@@ -23,24 +23,11 @@ builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(GetExchangeRateQueryHandler).Assembly);
 });
 
-//builder.Services.AddMediatR(typeof(GetExchangeRateQueryHandler).Assembly);
-
 
 builder.Services.AddTransient<ICoinMarketService, CoinMarketService>();
 builder.Services.AddTransient(typeof(IRepository<>), typeof(GenericRepository<>));
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<IHttpService, HttpService>();
-
-//builder.Services.AddAuthentication("Bearer")
-//    .AddJwtBearer("Bearer", options =>
-//    {
-//        options.Authority = "https://localhost:5001";
-
-//        options.TokenValidationParameters = new TokenValidationParameters
-//        {
-//            ValidateAudience = false
-//        };
-//    });
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
